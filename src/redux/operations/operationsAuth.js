@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { token } from '../../services/http';
 import {
   postUserRegistration,
   postUserLogin,
@@ -10,7 +11,9 @@ export const postUserRegistrationThunk = createAsyncThunk(
   '/users/signup',
   async (credentials, { rejectWithValue }) => {
     try {
-      return await postUserRegistration(credentials);
+      const { data } = await postUserRegistration(credentials);
+      token.set(data.token);
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -21,7 +24,9 @@ export const postUserLoginThunk = createAsyncThunk(
   '/users/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      return await postUserLogin(credentials);
+      const { data } = await postUserLogin(credentials);
+      token.set(data.token);
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -32,7 +37,8 @@ export const postUserLogoutThunk = createAsyncThunk(
   '/users/logout',
   async (_, { rejectWithValue }) => {
     try {
-      return await postUserLogout();
+      await postUserLogout();
+      token.unset();
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -41,9 +47,20 @@ export const postUserLogoutThunk = createAsyncThunk(
 
 export const getUserCurrentThunk = createAsyncThunk(
   '/users/current',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedToken = state.auth.token;
+    console.log(persistedToken);
+
+    if (persistedToken === null) {
+      return rejectWithValue();
+    }
+
+    token.set(persistedToken);
+
     try {
-      return await getUserCurrent();
+      const { data } = await getUserCurrent();
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }

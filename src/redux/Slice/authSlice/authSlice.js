@@ -1,4 +1,4 @@
-import { initialAuth } from './initialStateAuth';
+import { initialState } from './initialStateAuth';
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
@@ -10,7 +10,7 @@ import {
 
 export const authSlice = createSlice({
   name: 'auth',
-  initialState: initialAuth,
+  initialState: initialState,
   extraReducers: {
     [postUserRegistrationThunk.pending]: state => {
       state.isLoading = true;

@@ -1,1 +1,1 @@
-export { Layout as default } from './LayoutPage';
+export { LayoutPage as default } from './LayoutPage';
