@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getContactsThunk,
   deleteContactsThunk,
-} from '../../redux/operationsContacts/operationsContacts';
+} from '../../redux/operations/operationsContacts';
 import { Loader } from '../Loader';
 import React from 'react';
 

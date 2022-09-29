@@ -5,7 +5,7 @@ import {
   getContactsThunk,
   postContactsThunk,
   deleteContactsThunk,
-} from '../../../redux/operationsContacts/operationsContacts';
+} from '../../../redux/operations/operationsContacts';
 
 export const contactsSlice = createSlice({
   name: 'contacts',

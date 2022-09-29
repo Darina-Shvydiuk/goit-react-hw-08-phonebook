@@ -3,7 +3,7 @@ import s from '../ContactForm/ContactForm.module.css';
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { postContactsThunk } from '../../redux/operationsContacts/operationsContacts';
+import { postContactsThunk } from '../../redux/operations/operationsContacts';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
