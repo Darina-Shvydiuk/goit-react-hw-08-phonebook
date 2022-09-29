@@ -1,14 +1,8 @@
 import React, { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import { lazy } from 'react';
-// import { ContactForm } from './ContactForm';
-// import { Filter } from './Filter';
-// import { ContactList } from './ContactList';
-// import { LayoutPage } from '../pages/LayoutPage/LayoutPage';
-import { getUserCurrentThunk } from '../redux/operations/operationsAuth';
 
-// import s from './App.module.css';
+import { getUserCurrentThunk } from '../redux/operations/operationsAuth';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const LayoutPage = lazy(() => import('../pages/LayoutPage'));
@@ -35,13 +29,4 @@ export const App = () => {
       </Routes>
     </BrowserRouter>
   );
-  // return (
-  //   <div className={s.container}>
-  //     <h1>Phonebook</h1>
-  //     <ContactForm />
-  //     <h2>Contacts</h2>
-  //     <Filter />
-  //     <ContactList />
-  //   </div>
-  // );
 };
