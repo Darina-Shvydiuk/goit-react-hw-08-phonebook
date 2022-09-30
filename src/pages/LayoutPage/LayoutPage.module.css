@@ -1,5 +1,8 @@
 .header {
+  display: flex;
+  justify-content: space-between;
   max-width: 1170px;
+
   padding: 12px;
   margin-bottom: 15px;
   margin-left: auto;
@@ -10,11 +13,12 @@
 .item {
   display: inline-block;
   padding: 8px 12px;
+
   text-decoration: none;
   font-size: 18px;
   border-radius: 2px;
   background-color: #fff;
-  color: grey;
+  color: black;
 }
 
 .item:hover {

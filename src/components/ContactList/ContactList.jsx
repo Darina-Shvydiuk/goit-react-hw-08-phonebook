@@ -5,13 +5,22 @@ import {
   getContactsThunk,
   deleteContactsThunk,
 } from '../../redux/operations/operationsContacts';
+import {
+  contactsSelector,
+  filterSelector,
+  isLoadingSelector,
+} from '../../redux/selectors/contactsSelectors';
 import { Loader } from '../Loader';
 import React from 'react';
 
+import IconButton from '@mui/material/IconButton';
+// import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 export const ContactList = () => {
-  const { contacts } = useSelector(state => state.contacts);
-  const { filter } = useSelector(state => state);
-  const isLoading = useSelector(state => state.contacts.isLoading);
+  const contacts = useSelector(contactsSelector);
+  const filter = useSelector(filterSelector);
+  const isLoading = useSelector(isLoadingSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,18 +47,21 @@ export const ContactList = () => {
   } else {
     return (
       <ul className={s.list}>
-        {filterContacts.map(({ id, name, phone }) => {
+        {filterContacts.map(({ id, name, number }) => {
           return (
             <li key={id} className={s.item}>
               <span className={s.name}>{name}: </span>
-              <span className={s.tel}>{phone} </span>
-              <button
+              <span className={s.tel}>{number} </span>
+              <IconButton
+                color="primary"
+                size="small"
+                aria-label="delete"
                 className={s.btn}
                 type="button"
                 onClick={() => dispatch(deleteContactsThunk(id))}
               >
-                Delete
-              </button>
+                <DeleteIcon fontSize="inherit" />
+              </IconButton>
             </li>
           );
         })}

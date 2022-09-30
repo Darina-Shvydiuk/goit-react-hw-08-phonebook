@@ -45,7 +45,7 @@ export const contactsSlice = createSlice({
       state.isLoading = false;
 
       state.contacts = state.contacts.filter(
-        contact => contact.id !== action.payload.id
+        contact => contact.id !== action.payload
       );
       state.error = '';
     },

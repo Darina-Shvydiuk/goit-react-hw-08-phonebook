@@ -4,12 +4,14 @@ import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { postContactsThunk } from '../../redux/operations/operationsContacts';
+import { contactsSelector } from '../../redux/selectors/contactsSelectors';
+import Button from '@mui/material/Button';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(contactsSelector);
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -18,8 +20,8 @@ export const ContactForm = () => {
         setName(value);
         break;
 
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
 
       default:
@@ -30,7 +32,7 @@ export const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    const newContact = { phone, name };
+    const newContact = { number, name };
     const contactName = newContact.name.toLowerCase();
     if (
       contacts.find(recordName => recordName.name.toLowerCase() === contactName)
@@ -44,7 +46,7 @@ export const ContactForm = () => {
 
   const resetForm = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -66,18 +68,18 @@ export const ContactForm = () => {
         Tel:
         <input
           className={s.input}
-          value={phone}
+          value={number}
           onChange={handleChange}
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
       </label>
-      <button className={s.btn} type="submit">
+      <Button size="medium" type="submit" variant="contained">
         Add contact
-      </button>
+      </Button>
     </form>
   );
 };

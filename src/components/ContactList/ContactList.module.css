@@ -2,18 +2,28 @@
   margin-top: 20px;
   padding: 0;
   list-style: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .item {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .btn {
+  /* display: flex; */
   margin-left: 10px;
   min-width: 50px;
   min-height: 25px;
 
   cursor: pointer;
   border: none;
-  background-color: rgba(159, 177, 194, 0.631);
+  /* background-color: rgba(159, 177, 194, 0.631); */
+}
+.name {
+  font-weight: 500;
+  font-size: 20px;
+}
+.tel {
+  font-weight: 500;
+  font-size: 20px;
 }

@@ -67,9 +67,9 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.error = '';
     },
-    [getUserCurrentThunk.rejected]: (state, action) => {
+    [getUserCurrentThunk.rejected]: state => {
       state.isLoading = false;
-      state.error = action.payload;
+      // state.error = action.payload;
     },
   },
 });

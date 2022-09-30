@@ -15,22 +15,20 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-const rootReducer = combineReducers({
-  contacts: contactsSlice.reducer,
-  filter: filterSlice.reducer,
-  auth: authSlice.reducer,
-});
-
 const persistConfig = {
-  key: 'root',
+  key: 'auth',
   storage,
   whitelist: ['token'],
 };
 
-const persistedAuthReducer = persistReducer(persistConfig, rootReducer);
-
+const persistedAuthReducer = persistReducer(persistConfig, authSlice.reducer);
+const rootReducer = combineReducers({
+  contacts: contactsSlice.reducer,
+  filter: filterSlice.reducer,
+  auth: persistedAuthReducer,
+});
 export const store = configureStore({
-  reducer: persistedAuthReducer,
+  reducer: rootReducer,
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
