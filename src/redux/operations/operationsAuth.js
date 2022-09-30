@@ -50,7 +50,7 @@ export const getUserCurrentThunk = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken);
+    // console.log(persistedToken);
 
     if (persistedToken === null) {
       return rejectWithValue();
